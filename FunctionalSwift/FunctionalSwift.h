@@ -2,7 +2,7 @@
 //  FunctionalSwift.h
 //  FunctionalSwift
 //
-//  Created by Ilinca on 16/04/2015.
+//  Created by Ionel Lescai on 16/04/2015.
 //  Copyright (c) 2015 iosnsagora. All rights reserved.
 //
 

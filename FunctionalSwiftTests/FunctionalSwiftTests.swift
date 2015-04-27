@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+import FunctionalSwift
 
 class FunctionalSwiftTests: XCTestCase {
     
@@ -21,15 +22,23 @@ class FunctionalSwiftTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testGetMe() {
+        let user = getMe()
+        XCTAssertNotNil(user, "User is nil")
+        if let user = user {
+            println("User: \(user)")
+        }
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
+    func testGetUsers() {
+        let users = getUsers()
+
+        if users?.count != 2 {
+            XCTFail("Users array invalid")
+        }
+        
+        if let users = users {
+             println("Users: \(users)")
         }
     }
     

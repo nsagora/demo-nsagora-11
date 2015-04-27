@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC94A0F51AEE5FC300A687EC /* graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC94A0F41AEE5FC300A687EC /* graph.swift */; };
+		EFB41E2A1AE00AC4004598E7 /* nsagoraApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB41E291AE00AC4004598E7 /* nsagoraApi.swift */; };
 		EFBEC4A41ADFE5FB00B4D2C9 /* FunctionalSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = EFBEC4A31ADFE5FB00B4D2C9 /* FunctionalSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFBEC4AA1ADFE5FB00B4D2C9 /* FunctionalSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBEC49E1ADFE5FB00B4D2C9 /* FunctionalSwift.framework */; };
 		EFBEC4B11ADFE5FB00B4D2C9 /* FunctionalSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEC4B01ADFE5FB00B4D2C9 /* FunctionalSwiftTests.swift */; };
@@ -23,12 +25,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC94A0F41AEE5FC300A687EC /* graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = graph.swift; sourceTree = "<group>"; };
+		EFB41E291AE00AC4004598E7 /* nsagoraApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nsagoraApi.swift; sourceTree = "<group>"; };
 		EFBEC49E1ADFE5FB00B4D2C9 /* FunctionalSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FunctionalSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBEC4A21ADFE5FB00B4D2C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFBEC4A31ADFE5FB00B4D2C9 /* FunctionalSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FunctionalSwift.h; sourceTree = "<group>"; };
 		EFBEC4A91ADFE5FB00B4D2C9 /* FunctionalSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunctionalSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBEC4AF1ADFE5FB00B4D2C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFBEC4B01ADFE5FB00B4D2C9 /* FunctionalSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalSwiftTests.swift; sourceTree = "<group>"; };
+		EFBEC4BA1ADFE66A00B4D2C9 /* FunctionalPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = FunctionalPlayground.playground; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +58,7 @@
 		EFBEC4941ADFE5FB00B4D2C9 = {
 			isa = PBXGroup;
 			children = (
+				EFBEC4BA1ADFE66A00B4D2C9 /* FunctionalPlayground.playground */,
 				EFBEC4A01ADFE5FB00B4D2C9 /* FunctionalSwift */,
 				EFBEC4AD1ADFE5FB00B4D2C9 /* FunctionalSwiftTests */,
 				EFBEC49F1ADFE5FB00B4D2C9 /* Products */,
@@ -72,6 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				EFBEC4A31ADFE5FB00B4D2C9 /* FunctionalSwift.h */,
+				EFB41E291AE00AC4004598E7 /* nsagoraApi.swift */,
+				AC94A0F41AEE5FC300A687EC /* graph.swift */,
 				EFBEC4A11ADFE5FB00B4D2C9 /* Supporting Files */,
 			);
 			path = FunctionalSwift;
@@ -209,6 +217,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC94A0F51AEE5FC300A687EC /* graph.swift in Sources */,
+				EFB41E2A1AE00AC4004598E7 /* nsagoraApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +329,7 @@
 		EFBEC4B51ADFE5FB00B4D2C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -328,12 +339,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		EFBEC4B61ADFE5FB00B4D2C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,6 +408,7 @@
 				EFBEC4B61ADFE5FB00B4D2C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EFBEC4B71ADFE5FB00B4D2C9 /* Build configuration list for PBXNativeTarget "FunctionalSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +417,7 @@
 				EFBEC4B91ADFE5FB00B4D2C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
