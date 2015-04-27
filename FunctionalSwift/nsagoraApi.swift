@@ -9,8 +9,8 @@
 import Foundation
 
 public typealias JSON = AnyObject
-public typealias JSONDictionary = Dictionary<String, JSON>
-public typealias JSONArray = Array<JSON>
+public typealias JSONDictionary = [String:JSON]
+public typealias JSONArray = [JSON]
 
 public class User:Printable {
     public var name:String
