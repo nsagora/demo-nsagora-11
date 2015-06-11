@@ -22,7 +22,7 @@ func g(x:Double) -> Double {
     GraphLine(sin,UIColor.orangeColor())
  ]
 
- let image = graph(lines)
+ _ = graph(lines)
  }
  
  simpleGraph()
@@ -46,7 +46,7 @@ func g(x:Double) -> Double {
  
  
  
- func compose(f:RealFunction,g:RealFunction) -> RealFunction {
+ func compose(f:RealFunction,_ g:RealFunction) -> RealFunction {
     return { x in
         f(g(x))
     }
@@ -55,7 +55,7 @@ func g(x:Double) -> Double {
  func drawComposed() {
     let composed = compose(sqrt, g)
     let composedLine = GraphLine(composed,UIColor.redColor())
-    let image = graph([composedLine])
+    _ = graph([composedLine])
  }
  
  drawComposed()
@@ -123,9 +123,9 @@ let lines = [
  let n = stuff()
  switch(n) {
  case .None:
-    println("nil")
+    print("nil")
  case .Some(let n):
-    println(n)
+    print(n)
  }
  
  

@@ -12,7 +12,7 @@ public typealias JSON = AnyObject
 public typealias JSONDictionary = [String:JSON]
 public typealias JSONArray = [JSON]
 
-public class User:Printable {
+public class User:CustomStringConvertible {
     public var name:String
     public var pictureUrl:NSURL?
     
@@ -28,27 +28,13 @@ public class User:Printable {
     }
 }
 
-public final class Box<A> {
-    let value: A
-    
-    init(_ value: A) {
-        self.value = value
-    }
-    
-    var unbox:A {
-        get{
-            return value
-        }
-    }
-}
-
 public enum Result<A> {
-    case Success(Box<A>)
+    case Success(A)
     case Error(NSError)
 }
 
 public func parseUser(dictionary:JSONDictionary) -> Result<User> {
-    return .Success(Box(User(json: dictionary)))
+    return .Success(User(json: dictionary))
 }
 
 public func parseUsers(jsonArray:JSONArray) -> Result<[User]> {
@@ -58,7 +44,7 @@ public func parseUsers(jsonArray:JSONArray) -> Result<[User]> {
             users.append(User(json: jsonDict))
         }
     }
-    return .Success(Box(users))
+    return .Success(users)
 }
 
 public func parseJsonObject(data:NSData) -> Result<JSONDictionary> {
@@ -70,20 +56,20 @@ public func parseJsonArray(data:NSData) -> Result<JSONArray> {
 }
 
 public func parseJson<T>(data:NSData) -> Result<T> {
-    var error: NSError? = nil
-    if let value = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: &error) as? T {
-        return .Success(Box(value))
-    } else {
-        return .Error(error!)
+    do {
+        let value = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as! T
+        return Result.Success(value)
+    } catch let error as NSError {
+        return .Error(error)
     }
 }
 
 public func getData(url:NSURL) -> Result<NSData> {
-    var error: NSError? = nil
-    if let data = NSData(contentsOfURL: url, options: NSDataReadingOptions.allZeros, error: &error) {
-        return .Success(Box(data))
-    } else {
-        return .Error(error!)
+    do {
+        let data = try NSData(contentsOfURL: url, options: NSDataReadingOptions())
+        return .Success(data)
+    } catch let error as NSError {
+        return .Error(error)
     }
 }
 
@@ -92,29 +78,28 @@ func >>><A,B>(value:Result<A>,f:A->Result<B>) -> Result<B> {
     switch value {
     case .Error(let e):
         return .Error(e)
-    case .Success(let boxed):
-        return f(boxed.unbox)
+    case .Success(let x):
+        return f(x)
     }
 }
 
-func getResult<A>(value:Result<A>,inout error:NSError?) -> A? {
+func getResult<A>(value:Result<A>) throws -> A {
     switch value {
     case .Error(let e):
-        error = e
-        return nil
-    case .Success(let boxed):
-        return boxed.unbox
+        throw e
+    case .Success(let x):
+        return x
     }
 }
 
 public func getMe() -> User? {
     let url = NSURL(string: "http://localhost:8080/me")
     let sequence = getData(url!) >>> parseJson >>> parseUser
-    var error: NSError? = nil
-    if let user = getResult(sequence, &error) {
+    do {
+        let user = try getResult(sequence)
         return user
-    } else {
-        println(error!.localizedDescription)
+    } catch let error as NSError {
+        print(error.localizedDescription)
         return nil
     }
 }
@@ -122,11 +107,11 @@ public func getMe() -> User? {
 public func getUsers() -> [User]? {
     let url = NSURL(string: "http://localhost:8080/users")
     let sequence = getData(url!) >>> parseJsonArray >>> parseUsers
-    var error: NSError? = nil
-    if let users = getResult(sequence, &error) {
+    do {
+        let users = try getResult(sequence)
         return users
-    } else {
-        println(error?.localizedDescription)
+    } catch let error as NSError {
+        print(error.localizedDescription)
         return nil
     }
 }

@@ -26,7 +26,7 @@ class FunctionalSwiftTests: XCTestCase {
         let user = getMe()
         XCTAssertNotNil(user, "User is nil")
         if let user = user {
-            println("User: \(user)")
+            print("User: \(user)")
         }
     }
     
@@ -38,7 +38,7 @@ class FunctionalSwiftTests: XCTestCase {
         }
         
         if let users = users {
-             println("Users: \(users)")
+             print("Users: \(users)")
         }
     }
     
